@@ -66,7 +66,7 @@ class OptunaWorker:
         p.wait()
         return_code = p.poll()
         if return_code != 0:
-            logger.error("\n" + p.stderr.read().decode().strip())
+            logger.error("\n" + p.stderr.read().strip())
             raise RuntimeError("Training failed with the above error.")
         if all(f is None for f in final_metric_vals):
             metrics_yaml_str = yaml.safe_dump([m.dict() for m in model.metrics])
